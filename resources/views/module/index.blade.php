@@ -37,9 +37,7 @@
                     <!-- Logo -->
                     <div id="logo">
                         <a href=" {{ route('accueil') }} ">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="">
-                            <img src="{{ asset('assets/images/logo-light.png') }}" class="logo_inverse" alt="">
-                            <img src="{{ asset('assets/images/logo-mobile.png') }}" class="logo_mobile" alt="">
+                            ching<span class="text-yellow-600 text-xl italic font-bold">Info</span>
                         </a>
                     </div>
     
@@ -85,7 +83,7 @@
                                         response.forEach(element => {
                                             el.innerHTML += 
                                             `<li> 
-                                                <a href="${window.location.origin}/exercice/${element.slug}">  
+                                                <a href="${window.location.origin}/exercice/${element.id}/${element.title}">  
                                                     <div class="text-sm text-white from-red-600 to-red-400 bg-gradient-to-tl p-2 px-5 rounded-full"> ${element.id}  </div>
                                                     <div class="text-sm text-black  p-2 px-5 rounded-md">  ${element.title} </div>
                                                 </a> 
@@ -93,14 +91,12 @@
                                         })
                                     })
                                     .catch(error => alert("Erreur : " + error));
-
-
                                 }
                             })
                         </script>
                     </div>
 
-                    <div>
+                    {{-- <div>
 
                        
         
@@ -177,7 +173,7 @@
                             </ul>
                         </div> 
 
-                    </div>
+                    </div> --}}
     
                 </div>
             </div>
@@ -285,7 +281,7 @@
             <!-- footer -->
             <div class="lg:mt-28 mt-10 mb-7 px-12 border-t pt-7">
                 <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
-                    <p class="capitalize font-medium"> © copyright <script>document.write(new Date().getFullYear())</script>  Courseplus</p>
+                    <p class="capitalize font-medium"> © copyright <script>document.write(new Date().getFullYear())</script>  chingInfo</p>
                     <div class="lg:flex space-x-4 text-gray-700 capitalize hidden">
                         <a href=" {{ route('accueil') }} "> Accueil</a>
                         <a href="#"> Aide</a>

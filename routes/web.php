@@ -17,8 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ExerciseController::class, 'index'])->name('accueil');
 Route::get('/module/{slug}', [ExerciseController::class, 'all'])->name('module');
 Route::get('/exercices', [ExerciseController::class, 'allExercises'])->name('exercice.all');
-Route::get('/exercice/{slug}', [ExerciseController::class, 'show'])->name('exercice');
+Route::get('/exercice/{id}/{slug}', [ExerciseController::class, 'show'])->name('exercice');
 Route::get('/recherche/{slug}', [ExerciseController::class, 'search'])->name('recherche');
+Route::post('/exercices', [ExerciseController::class, 'select'])->name('select');
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

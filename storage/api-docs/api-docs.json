@@ -1,0 +1,398 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentation chingInfo",
+        "description": "Implementation de Swagger dans Laravel",
+        "contact": {
+            "email": "amekoudjipelagie79@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api",
+            "description": "Documentation chingInfo"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Modules"
+                ],
+                "summary": "Avoir la liste des modules informatique",
+                "description": "Affiche la liste de tout les modules informatique enregistré en base de données",
+                "operationId": "getAllModule",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/modules/{slug}": {
+            "get": {
+                "tags": [
+                    "Modules"
+                ],
+                "summary": "Avoir la liste des exercices present dans un module",
+                "description": "Affiche la liste de tout les exercice enregistré en base de données appartenant à un module",
+                "operationId": "getAllModuleExercices",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/exercices": {
+            "get": {
+                "tags": [
+                    "Exercices"
+                ],
+                "summary": "Avoir la liste des exercices",
+                "description": "Affiche la liste de tout les exercices enregistrés en base de données",
+                "operationId": "getAllExercices",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Exercices"
+                ],
+                "summary": "Avoir les exercices selectionnés",
+                "description": "Affiche tout les exercices selectionnés et leurs solutions si existante",
+                "operationId": "getAllExercicesSelect",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/exercice/{id}/{slug}": {
+            "get": {
+                "tags": [
+                    "Exercice"
+                ],
+                "summary": "Afficher un exercices",
+                "description": "Affiche un exercice enregistré en base de données et sa solution si existante",
+                "operationId": "getExercice",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "/recherche/{slug}": {
+            "get": {
+                "tags": [
+                    "Recherche"
+                ],
+                "summary": "Effectuer une recherche",
+                "description": "Retourne la liste de tout les exercices contenant le mot clé recherché",
+                "operationId": "getSearch",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/modules": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Avoir la liste des modules coté administrateur",
+                "description": "Retourne tout les modules enregistré en base de données",
+                "operationId": "getAllModules",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/modules/create": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "créer un module",
+                "description": "Ajoute un module en base de données",
+                "operationId": "createModule",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/modules/edit": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "modifie un module",
+                "description": "Modifie un module en base de données",
+                "operationId": "editModule",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/modules/delete": {
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "supprime un module",
+                "description": "Supprime un module en base de données",
+                "operationId": "deleteModule",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/exercises": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Avoir la liste des exercices coté administrateur",
+                "description": "Retourne tout les exercices enregistré en base de données",
+                "operationId": "getAllExercises",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/exercises/create": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "créer un exercice",
+                "description": "Ajoute un exercice en base de données",
+                "operationId": "createExercise",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/exercises/edit": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "modifie un exercice",
+                "description": "Modifie un exercice en base de données",
+                "operationId": "editExercise",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/exercises/delete": {
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "supprime un exercice",
+                "description": "Supprime un exercice en base de données",
+                "operationId": "deleteExercise",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/solutions": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Avoir la liste des solutions coté administrateur",
+                "description": "Retourne toutes les solutions enregistré en base de données",
+                "operationId": "getAllSolutions",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/solutions/create": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "créer une solution",
+                "description": "Ajoute une solution en base de données",
+                "operationId": "createSolution",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/solutions/edit": {
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "modifie une solution",
+                "description": "Modifie une solution en base de données",
+                "operationId": "editSolution",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        },
+        "admin/solutions/delete": {
+            "delete": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "supprime une solution",
+                "description": "Supprime une solution en base de données",
+                "operationId": "deleteSolution",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "text/html": {}
+                        }
+                    },
+                    "404": {
+                        "description": "not found"
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}

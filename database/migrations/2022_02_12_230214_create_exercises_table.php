@@ -18,6 +18,7 @@ class CreateExercisesTable extends Migration
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->longText('content');
+            $table->string('file');
             $table->tinyInteger('online')->default(0);
             $table->foreignId('module_id')->constrained()->onDelete('cascade');
             $table->timestamps();

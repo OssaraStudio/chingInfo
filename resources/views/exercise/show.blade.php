@@ -21,7 +21,8 @@
     ================================================== -->
     <link rel="stylesheet" href="{{ asset('assets/css/uikit.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">    
+	<script src=" {{ asset('assets/js/jquery.min.js') }} "></script>
 
 </head>
 
@@ -37,9 +38,7 @@
                     <!-- Logo -->
                     <div id="logo">
                         <a href=" {{ route('accueil') }} ">
-                            <img src=" {{ asset('assets/images/logo.png') }} " alt="">
-                            <img src=" {{ asset('assets/images/logo-light.png') }} " class="logo_inverse" alt="">
-                            <img src=" {{ asset('assets/images/logo-mobile.png') }} " class="logo_mobile" alt="">
+                            ching<span class="text-yellow-600 text-xl italic font-bold">Info</span>
                         </a>
                     </div>
     
@@ -51,17 +50,59 @@
                 <div class="right-side">
      
                     <!-- Header search box  -->
-                    <div class="header_search"><i class="uil-search-alt"></i> 
-                        <input value="" type="text" class="form-control" placeholder=" Recherche rapide ..." autocomplete="off" aria-expanded="false">
+                    <div class="header_search"><ion-icon name="search" class="icon-search">
+                    </ion-icon>
+                        <input id="research" type="text" class="form-control" placeholder=" Recherche rapide ..." autocomplete="off">
                         
+                        <div uk-drop="mode: click;offset:10" class="header_search_dropdown uk-drop" style="left: 0px; top: 54px;">
+                               
+                            <h4 class="search_title"> Recherche </h4>
+                            <ul id='my_ul'>
+                                
+                            </ul>
+    
+                        </div>
+                        <script>
+                            let my_el = document.getElementById("research");
+                            let el = document.getElementById("my_ul");
+                            let data = '';
+                            my_el.addEventListener('keydown', (e) => {
+                                el.innerHTML = '';
+                                data = my_el.value;
+                                if(e.key.length == 1)
+                                    data += e.key;
+                                else if(e.key.length > 1)
+                                    data = data.substr(0,(data.length -1))
+                                
+                                if(data.length > 0)
+                                {
+                                    fetch(`${window.location.origin}/recherche/${data}`)
+                                    .then(response => response.json())
+                                    .then(response => {
+                                        let a = JSON.stringify(response);
+                                        
+                                        response.forEach(element => {
+                                            el.innerHTML += 
+                                            `<li> 
+                                                <a href="${window.location.origin}/exercice/${element.id}/${element.title}">  
+                                                    <div class="text-sm text-white from-red-600 to-red-400 bg-gradient-to-tl p-2 px-5 rounded-full"> ${element.id}  </div>
+                                                    <div class="text-sm text-black  p-2 px-5 rounded-md">  ${element.title} </div>
+                                                </a> 
+                                            </li>`
+                                        })
+                                    })
+                                    .catch(error => alert("Erreur : " + error));
+                                }
+                            })
+                        </script>
                     </div>
 
 
-                    <div>
+                    {{-- <div>
         
                          <!-- profile -->
                         <a href="#" aria-expanded="false">
-                            <img src="../assets/images/avatars/placeholder.png" class="header_widgets_avatar" alt="">
+                            <img src=" {{ asset('assets/images/avatars/placeholder.png')}} " class="header_widgets_avatar" alt="">
                         </a>
                         <div uk-drop="mode: click;offset:5" class="header_dropdown profile_dropdown uk-drop">
                             <ul>   
@@ -132,7 +173,7 @@
                             </ul>
                         </div> 
 
-                    </div>
+                    </div> --}}
     
                 </div>
             </div>
@@ -184,12 +225,11 @@
                                     <li class=""><a href="#faq" uk-scroll="">PDF</a></li>
                                 </ul>
                             </nav>
-                        </div><div class="uk-sticky-placeholder" style="height: 59px; margin: 0px 0px 16px;" hidden=""></div>
-
-
+                        </div>
+                        
                         <!-- course description -->
                         <div class="tube-card p-6" id="Overview">
-    
+        
                             <h3 class="mb-4 text-xl font-semibold"> Sujet </h3>
                             <div class="space-y-7">
                                 {!! $exercise->content !!}
@@ -197,40 +237,24 @@
 
                         </div>
 
-                        <!-- course Curriculum -->
+                    <!-- course Curriculum -->
                         <div id="curriculum">
                             <h3 class="mb-4 text-xl font-semibold"> Solution </h3>
                             <div class="tube-card p-4 divide-y space-y-3 uk-accordion">
-                                {!! $exercise->solution->content !!}                                
+                                @if ($exercise->solution)
+                                    {!! $exercise->solution->content !!}
+                                @else
+                                    Solution non disponible
+                                @endif                               
                             </div>
                         </div>
 
-                        <!-- course Faq --> 
+                        <!-- course Faq -->
                         <div id="faq" class="tube-card p-5">
                             <h3 class="text-lg font-semibold mb-3"> Télécharger PDF </h3>
-                            <ul uk-accordion="multiple: true" class="divide-y space-y-3 uk-accordion">
-                                <li class="bg-gray-100 px-4 py-3 rounded-md uk-open">
-                                    <a class="uk-accordion-title font-semibold text-base" href="#"> Html Introduction </a>
-                                    <div class="uk-accordion-content mt-3">
-                                        <p> The primary goal of this quick start guide is to introduce you to
-                                            Unreal
-                                            Engine 4`s (UE4) development environment. By the end of this guide,
-                                            you`ll
-                                            know how to set up and develop C++ Projects in UE4. This guide shows
-                                            you
-                                            how
-                                            to create a new Unreal Engine project, add a new C++ class to it,
-                                            compile
-                                            the project, and add an instance of a new class to your level. By
-                                            the
-                                            time
-                                            you reach the end of this guide, you`ll be able to see your
-                                            programmed
-                                            Actor
-                                            floating above a table in the level. </p>
-                                    </div>
-                                </li>
-                            </ul>
+                            <div class="flex justify-center mt-9">
+                                <a href=" {{$link}} " target="_blank" class="bg-red-600 text-white hover:text-white border px-4 py-1.5 rounded-full text-sm"> Télécharger PDF</a>
+                            </div>
                         </div>
 
 
@@ -317,7 +341,7 @@
             <!-- footer -->
             <div class="lg:mt-28 mt-10 mb-7 px-12 border-t pt-7">
                 <div class="flex flex-col items-center justify-between lg:flex-row max-w-6xl mx-auto lg:space-y-0 space-y-3">
-                    <p class="capitalize font-medium"> © copyright <script>document.write(new Date().getFullYear())</script>  Courseplus</p>
+                    <p class="capitalize font-medium"> © copyright <script>document.write(new Date().getFullYear())</script>  chingInfo</p>
                     <div class="lg:flex space-x-4 text-gray-700 capitalize hidden">
                         <a href=" {{ route('accueil') }} "> Accueil</a>
                         <a href="#"> Aide</a>
@@ -365,6 +389,10 @@
     <script src="{{ asset('assets/js/custom.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-select.min.js') }}"></script>
     <script src="https://unpkg.com/ionicons@5.2.3/dist/ionicons.js"></script>
+    <script src=" {{ asset('assets/js/jspdf.debug.js') }} "></script>
+    <script src=" {{ asset('assets/js/html2canvas.min.js') }}"></script>
+    <script src=" {{ asset('assets/js/html2pdf.min.js') }}"></script>
+
 
 </body>
 
